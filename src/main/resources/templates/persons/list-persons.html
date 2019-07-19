@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<title>Person Directory</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h3>
+			<a class="btn btn-primary btn-lg mt-3" th:href="@{/persons/list}">Persons Directory</a>
+		</h3>
+		<hr>
+
+		<div th:if="${param.q != null}">
+			<div class="alert alert-success col-xs-offset-1 col-xs-10">Email Sending Successfully.</div>
+		</div>
+
+		<a th:href="@{/persons/showFormForAdd}" class="btn btn-primary btn-sm mb-3"> Add Person </a>
+		<a th:href="@{/persons/showFormForSearch}" class="btn btn-primary btn-sm mb-3"> Find Person </a>
+		<a th:href="@{/persons/showFormForSendingToEmail}" class="btn btn-primary btn-sm mb-3"> Send to Email </a>
+		
+			<form method="POST" th:action="@{/logout}">
+				<input type="submit" value="LogOut" class="btn btn-primary btn-sm mb-3">
+			</form>
+
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="tempPerson : ${persons}">
+
+					<td th:text="${tempPerson.id}" />
+					<td th:text="${tempPerson.firstName}" />
+					<td th:text="${tempPerson.lastName}" />
+					<td th:text="${tempPerson.phone}" />
+					<td th:text="${tempPerson.email}" />
+
+					<td><a th:href="@{/persons/showFormForUpdate(personId=${tempPerson.id})}" class="btn btn-info btn-sm">
+							Update </a> <a th:href="@{/persons/delete(personId=${tempPerson.id})}" class="btn btn-danger btn-sm"
+							onclick="if (!(confirm('Are you sure you want to delete this person?'))) return false"> Delete </a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+</html>
+
+
+

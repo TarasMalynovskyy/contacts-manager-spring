@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<title>Person Directory</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h3>
+			<a class="btn btn-primary btn-lg mt-3" th:href="@{/persons/list}">Persons
+				Directory</a>
+		</h3>
+		<hr>
+
+		<form action="#" th:action="@{/persons/sendEmail}"
+			th:object="${persons}" method="POST">
+
+			<input type="email" class="form-control mb-3"
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+				name="emailAddress" placeholder="Enter email">
+
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+
+						<th>Select</th>
+						<th>ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Phone</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="tempPerson : ${persons}">
+
+						<td><input type="checkbox" name="checkboxName[]"
+							th:value="${tempPerson.id}"></td>
+
+						<td th:text="${tempPerson.id}" />
+						<td th:text="${tempPerson.firstName}" />
+						<td th:text="${tempPerson.lastName}" />
+						<td th:text="${tempPerson.phone}" />
+						<td th:text="${tempPerson.email}" />
+
+					</tr>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-info col-2">Send</button>
+		</form>
+
+	</div>
+
+</body>
+</html>
+
+
+

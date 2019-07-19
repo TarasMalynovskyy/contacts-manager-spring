@@ -1,0 +1,38 @@
+	<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<title>Save Employee</title>
+</head>
+<body>
+	<div class="container">
+		<h3><a class="btn btn-primary btn-lg mt-3" th:href="@{/}">Welcome Page</a></h3>
+		<hr>
+		
+		<p class="h4 mb-4">Login</p>
+		
+		<div th:if="${param.error != null}">
+			<div class="alert alert-warning col-xs-offset-1 col-xs-10">Login or password incorrect.</div>
+		</div>
+		
+		<form th:action="@{/login}" method="POST">
+		
+			<input type="text" name="username" class="form-control mb-4 col-4" placeholder="User name">
+			<input type="password" name="password" class="form-control mb-4 col-4" placeholder="Password">
+			
+			<input type="submit" value="Login" class="btn btn-primary col-2">
+			<a th:href="@{/showFormForCreatingUser}" class="btn btn-primary col-2"> Register</a>
+		</form>
+		<hr>
+		
+	</div>
+</body>
+</html>
